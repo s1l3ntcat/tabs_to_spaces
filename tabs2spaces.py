@@ -12,6 +12,7 @@
 ####################################
 
 import sys
+import os.path as dir
 
 ###############################################################
 # METHODS:                                                    #
@@ -52,6 +53,8 @@ if __name__ == '__main__':
         exit(1)
     for arg in sys.argv:
         filename = arg
+        if dir.isdir(filename):
+            continue
         data = read_file(filename)
         lines = data.split('\n')
         buffer = ''
@@ -59,5 +62,3 @@ if __name__ == '__main__':
             line = replace_line(line)
             buffer += line + '\n'
         write_file(filename, buffer)
-
-
