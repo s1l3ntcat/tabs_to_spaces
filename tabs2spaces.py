@@ -47,14 +47,17 @@ def write_file(path_to_file, data):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Usage: ./tabs2spaces.py [filename]')
+    if len(sys.argv) < 2:
+        print('Usage: ./tabs2spaces.py [filename] [filename2] [...]')
         exit(1)
-    filename = sys.argv[1]
-    data = read_file(filename)
-    lines = data.split('\n')
-    buffer = ''
-    for line in lines:
-        line = replace_line(line)
-        buffer += line + '\n'
-    write_file(filename, buffer)
+    for arg in sys.argv:
+        filename = arg
+        data = read_file(filename)
+        lines = data.split('\n')
+        buffer = ''
+        for line in lines:
+            line = replace_line(line)
+            buffer += line + '\n'
+        write_file(filename, buffer)
+
+
